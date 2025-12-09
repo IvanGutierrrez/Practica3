@@ -1,0 +1,29 @@
+# Archivos compilados
+/build/
+*/build/
+
+# Gradle
+.gradle/
+gradle/caches/
+gradle/wrapper/dists/
+
+# Archivos de sistema
+.DS_Store
+*.log
+
+# IDEs
+#. IntelliJ / Android Studio
+.idea/
+*.iml
+
+# Archivos de Windows
+Thumbs.db
+
+# Binarios
+*.jar
+*.war
+*.apk
+*.aab
+
+# Local properties (Android)
+local.properties
