@@ -6,6 +6,9 @@
 .gradle/
 gradle/caches/
 gradle/wrapper/dists/
+gradle/daemon/
+gradle/jdks/
+gradle/native/
 
 # Archivos de sistema
 .DS_Store
