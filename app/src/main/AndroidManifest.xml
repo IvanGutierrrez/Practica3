@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EjemploJuegoPiratas">
 
-        <activity android:name="JuegoPiratas"
+        <activity android:name="JuegoWallE"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
