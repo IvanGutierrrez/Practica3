@@ -62,7 +62,7 @@ public class MainMenuScreen extends Pantalla {
         g.drawPixmap(Assets.logo, 32, 20);
         g.drawPixmap(Assets.menuprincipal, 64, 220);
         if(Configuraciones.sonidoHabilitado)
-            g.drawPixmap(Assets.botones, 0, 416, 0, 0, 64, 64);
+            g.drawPixmap(Assets.botones, 0, 416, 5, 0, 64, 64);
         else
             g.drawPixmap(Assets.botones, 0, 416, 64, 0, 64, 64);
     }
