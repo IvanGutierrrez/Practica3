@@ -158,6 +158,22 @@ public class PantallaJuego extends Pantalla {
         int y = basura.y * 32;
         g.drawPixmap(stainPixmap, x, y);
 
+        // Dibujar power-up si existe y no está activo
+        if (mundo.powerUp != null && !mundo.powerUp.activo) {
+            PowerUp powerUp = mundo.powerUp;
+            Pixmap powerUpPixmap = null;
+            if (powerUp.tipo == PowerUp.TIPO_ACELERAR)
+                powerUpPixmap = Assets.acelerar;
+            else if (powerUp.tipo == PowerUp.TIPO_RALENTIZAR)
+                powerUpPixmap = Assets.ralentizar;
+            
+            if (powerUpPixmap != null) {
+                int px = powerUp.x * 32;
+                int py = powerUp.y * 32;
+                g.drawPixmap(powerUpPixmap, px, py);
+            }
+        }
+
         int len = robot.partes.size();
         for(int i = 1; i < len; i++) {
             Cubo part = robot.partes.get(i);
