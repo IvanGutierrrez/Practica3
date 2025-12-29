@@ -158,7 +158,6 @@ public class PantallaJuego extends Pantalla {
         int y = basura.y * 32;
         g.drawPixmap(stainPixmap, x, y);
 
-        // Dibujar power-up si existe y no está activo
         if (mundo.powerUp != null && !mundo.powerUp.activo) {
             PowerUp powerUp = mundo.powerUp;
             Pixmap powerUpPixmap = null;
@@ -176,7 +175,6 @@ public class PantallaJuego extends Pantalla {
             }
         }
 
-        // Dibujar bomba
         if (mundo.bomba != null) {
             int bx = mundo.bomba.x * 32;
             int by = mundo.bomba.y * 32;

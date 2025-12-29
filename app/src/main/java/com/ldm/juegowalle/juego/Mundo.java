@@ -83,7 +83,6 @@ public class Mundo {
             campos[parte.x][parte.y] = true;
         }
 
-        // También marcar la basura
         if (basura != null) {
             campos[basura.x][basura.y] = true;
         }
@@ -110,11 +109,9 @@ public class Mundo {
             for (int y = 0; y < MUNDO_ALTO; y++)
                 campos[x][y] = false;
 
-        // Marcar posiciones del robot
         for (Cubo parte : robot.partes)
             campos[parte.x][parte.y] = true;
 
-        // Marcar basura
         if (basura != null)
             campos[basura.x][basura.y] = true;
 
@@ -125,8 +122,7 @@ public class Mundo {
             bombaX = random.nextInt(MUNDO_ANCHO);
             bombaY = random.nextInt(MUNDO_ALTO);
 
-            // Comprobar que no esté ocupada y alejada de la cabeza
-            if (!campos[bombaX][bombaY] &&
+                if (!campos[bombaX][bombaY] &&
                     Math.abs(bombaX - head.x) > 1 &&
                     Math.abs(bombaY - head.y) > 1)
                 break;
@@ -140,17 +136,14 @@ public class Mundo {
         if (finalJuego)
             return;
 
-        // Gestión del temporizador de power-up
         tiempoPowerUp += deltaTime;
         
-        // Generar power-up si es el momento
         if (powerUp == null && tiempoPowerUp >= tiempoProximoPowerUp) {
             colocarPowerUp();
             tiempoPowerUp = 0;
             tiempoProximoPowerUp = POWERUP_MIN_TIME + random.nextFloat() * (POWERUP_MAX_TIME - POWERUP_MIN_TIME);
         }
 
-        // Gestión de efectos activos de power-up
         if (powerUp != null && powerUp.activo) {
             powerUp.tiempoRestante -= deltaTime;
 
@@ -168,23 +161,20 @@ public class Mundo {
                 powerUp = null;
             }
         }
-        // Manejo de la bomba
+        
         tiempoBomba += deltaTime;
 
-        // Solo hay bomba mientras la puntuación sea menor a 300
         if (bomba == null && puntuacion < 300 && tiempoBomba >= INTERVALO_BOMBA) {
             colocarBomba();
             tiempoBomba = 0;
         }
 
-        // Reducir tiempo de vida de la bomba
         if (bomba != null) {
             bomba.tiempoRestante -= deltaTime;
             if (bomba.tiempoRestante <= 0)
                 bomba = null;
         }
 
-        // Comprobar colisión con la cabeza
         if (bomba != null) {
             Cubo head = robot.partes.get(0);
             if (head.x == bomba.x && head.y == bomba.y)
@@ -203,7 +193,6 @@ public class Mundo {
 
             Cubo head = robot.partes.get(0);
             
-            // Comprobar colisión con basura
             if (head.x == basura.x && head.y == basura.y) {
                 if (puntosDoblesActivos)
                     puntuacion += INCREMENTO_PUNTUACION * 2;
@@ -223,19 +212,18 @@ public class Mundo {
                 }
             }
             
-            // Comprobar colisión con power-up
             if (powerUp != null && !powerUp.activo && head.x == powerUp.x && head.y == powerUp.y) {
                 powerUp.activo = true;
                 powerUp.tiempoRestante = POWERUP_DURACION;
                 tickOriginal = tick;
                 
                 if (powerUp.tipo == PowerUp.TIPO_ACELERAR) {
-                    tick = tick * 0.5f; // Acelera (tick más pequeño = más rápido)
+                    tick = tick * 0.5f;
                 } else if (powerUp.tipo == PowerUp.TIPO_RALENTIZAR) {
-                    tick = tick * 2.0f; // Ralentiza (tick más grande = más lento)
+                    tick = tick * 2.0f;
                 } else if (powerUp.tipo == PowerUp.TIPO_PUNTOS_DOBLES) {
                     powerUp.tiempoRestante = POWERUP_PUNTOS_DURACION;
-                    puntosDoblesActivos = true; // Los puntos valen doble
+                    puntosDoblesActivos = true;
                 }
             }
         }

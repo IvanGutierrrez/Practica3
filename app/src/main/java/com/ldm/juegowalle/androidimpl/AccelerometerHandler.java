@@ -15,10 +15,8 @@ public class AccelerometerHandler implements SensorEventListener {
 
     public AccelerometerHandler(Context context) {
         SensorManager manager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        // Obtener la lista de sensores de tipo acelerómetro
         List<Sensor> sensors = manager.getSensorList(Sensor.TYPE_ACCELEROMETER);
 
-        // Usar isEmpty() en lugar de size() != 0
         if (!sensors.isEmpty()) {
             Sensor accelerometer = sensors.get(0);
             manager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
@@ -28,7 +26,6 @@ public class AccelerometerHandler implements SensorEventListener {
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // No hace nada
     }
 
     @Override
