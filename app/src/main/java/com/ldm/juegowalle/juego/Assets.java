@@ -25,6 +25,9 @@ public class Assets {
     public static Pixmap botin3;
     public static Pixmap acelerar;
     public static Pixmap ralentizar;
+    public static Pixmap puntosdobles;
+    public static Pixmap bomba;
+
 
     public static Sonido pulsar;
     public static Sonido ataque;

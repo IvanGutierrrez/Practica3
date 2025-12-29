@@ -166,12 +166,21 @@ public class PantallaJuego extends Pantalla {
                 powerUpPixmap = Assets.acelerar;
             else if (powerUp.tipo == PowerUp.TIPO_RALENTIZAR)
                 powerUpPixmap = Assets.ralentizar;
+            else if (powerUp.tipo == PowerUp.TIPO_PUNTOS_DOBLES)
+                powerUpPixmap = Assets.puntosdobles;
             
             if (powerUpPixmap != null) {
                 int px = powerUp.x * 32;
                 int py = powerUp.y * 32;
                 g.drawPixmap(powerUpPixmap, px, py);
             }
+        }
+
+        // Dibujar bomba
+        if (mundo.bomba != null) {
+            int bx = mundo.bomba.x * 32;
+            int by = mundo.bomba.y * 32;
+            g.drawPixmap(Assets.bomba, bx, by);
         }
 
         int len = robot.partes.size();

@@ -3,6 +3,7 @@ package com.ldm.juegowalle.juego;
 public class PowerUp {
     public static final int TIPO_ACELERAR = 0;
     public static final int TIPO_RALENTIZAR = 1;
+    public static final int TIPO_PUNTOS_DOBLES = 2;
     
     public int x, y;
     public int tipo;

@@ -14,16 +14,16 @@ public class LoadingScreen extends Pantalla{
     public void update(float deltaTime) {
         Graficos g = juego.getGraphics();
         Assets.fondo = g.newPixmap("fondo.png", PixmapFormat.RGB565);
-        Assets.logo = g.newPixmap("logo.png", PixmapFormat.ARGB4444);
-        Assets.menuprincipal = g.newPixmap("menuprincipal.png", PixmapFormat.ARGB4444);
+        Assets.logo = g.newPixmap("logo.png", PixmapFormat.ARGB4444); //Cambiar
+        Assets.menuprincipal = g.newPixmap("menuprincipal.png", PixmapFormat.ARGB4444);//Cambiar
         Assets.botones = g.newPixmap("botones.png", PixmapFormat.ARGB4444);
-        Assets.ayuda1 = g.newPixmap("ayuda1.png", PixmapFormat.ARGB4444);
-        Assets.ayuda2 = g.newPixmap("ayuda2.png", PixmapFormat.ARGB4444);
-        Assets.ayuda3 = g.newPixmap("ayuda3.png", PixmapFormat.ARGB4444);
-        Assets.numeros = g.newPixmap("numeros.png", PixmapFormat.ARGB4444);
-        Assets.preparado = g.newPixmap("preparado.png", PixmapFormat.ARGB4444);
-        Assets.menupausa = g.newPixmap("menupausa.png", PixmapFormat.ARGB4444);
-        Assets.finjuego = g.newPixmap("finjuego.png", PixmapFormat.ARGB4444);
+        Assets.ayuda1 = g.newPixmap("ayuda1.png", PixmapFormat.ARGB4444); //Cambiar
+        Assets.ayuda2 = g.newPixmap("ayuda2.png", PixmapFormat.ARGB4444); //Cambiar
+        Assets.ayuda3 = g.newPixmap("ayuda3.png", PixmapFormat.ARGB4444); //Cambiar
+        Assets.numeros = g.newPixmap("numeros.png", PixmapFormat.ARGB4444); //Cambiar
+        Assets.preparado = g.newPixmap("preparado.png", PixmapFormat.ARGB4444); //Cambiar
+        Assets.menupausa = g.newPixmap("menupausa.png", PixmapFormat.ARGB4444); //Cambiar
+        Assets.finjuego = g.newPixmap("finjuego.png", PixmapFormat.ARGB4444); //Cambiar
         Assets.barcoarriba = g.newPixmap("robotarriba.png", PixmapFormat.ARGB4444);
         Assets.barcoizquierda = g.newPixmap("robotizquierda.png", PixmapFormat.ARGB4444);
         Assets.barcoabajo = g.newPixmap("robotabajo.png", PixmapFormat.ARGB4444);
@@ -34,6 +34,9 @@ public class LoadingScreen extends Pantalla{
         Assets.botin3 = g.newPixmap("basura3.png", PixmapFormat.ARGB4444);
         Assets.acelerar = g.newPixmap("acelerar.png", PixmapFormat.ARGB4444);
         Assets.ralentizar = g.newPixmap("ralentizar.png", PixmapFormat.ARGB4444);
+        Assets.puntosdobles = g.newPixmap("puntosx2.png", PixmapFormat.ARGB4444);
+        Assets.bomba = g.newPixmap("bomba.png", PixmapFormat.ARGB4444);
+
         Assets.pulsar = juego.getAudio().nuevoSonido("pulsar.ogg");
         Assets.ataque = juego.getAudio().nuevoSonido("recoger.ogg");
         Assets.derrota = juego.getAudio().nuevoSonido("derrota.ogg");
