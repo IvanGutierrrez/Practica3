@@ -233,7 +233,7 @@ public class PantallaJuego extends Pantalla {
     private void drawGameOverUI() {
         Graficos g = juego.getGraphics();
         g.drawPixmap(Assets.finjuego, 62, 100);
-        g.drawPixmap(Assets.botones, 128, 200, 0, 128, 64, 64);
+        g.drawPixmap(Assets.botones, 128, 200, 0, 118, 64, 64);
         g.drawLine(0, 416, 480, 416, Color.BLACK);
     }
 
@@ -247,18 +247,75 @@ public class PantallaJuego extends Pantalla {
                 continue;
             }
 
-            int srcX;
-            int srcWidth;
-
-            if (character == '.') {
-                srcX = 200;
-                srcWidth = 10;
-            } else {
-                srcX = (character - '0') * 20;
-                srcWidth = 20;
+            int srcX = 0;
+            int srcY = 0;
+            int srcWidth = 0;
+            int srcHeight = 0;
+            
+            switch (character) {
+                case '0':
+                    srcX = 10;
+                    srcY = 19;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '1':
+                    srcX = 52;
+                    srcY = 19;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '2':
+                    srcX = 88;
+                    srcY = 19;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '3':
+                    srcX = 128;
+                    srcY = 19;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '4':
+                    srcX = 165;
+                    srcY = 19;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '5':
+                    srcX = 10;
+                    srcY = 79;
+                    srcWidth = 38;
+                    srcHeight = 39;
+                    break;
+                case '6':
+                    srcX = 52;
+                    srcY = 79;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '7':
+                    srcX = 88;
+                    srcY = 79;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '8':
+                    srcX = 126;
+                    srcY = 79;
+                    srcWidth = 39;
+                    srcHeight = 39;
+                    break;
+                case '9':
+                    srcX = 165;
+                    srcY = 79;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
             }
 
-            g.drawPixmap(Assets.numeros, x, y, srcX, 0, srcWidth, 32);
+            g.drawPixmap(Assets.numeros, x, y, srcX, srcY, srcWidth, srcHeight);
             x += srcWidth;
         }
     }

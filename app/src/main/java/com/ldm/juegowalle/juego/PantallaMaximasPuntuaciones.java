@@ -13,7 +13,7 @@ public class PantallaMaximasPuntuaciones extends Pantalla {
         super(juego);
 
         for (int i = 0; i < 5; i++) {
-            lineas[i] = (i + 1) + ". " + Configuraciones.maxPuntuaciones[i];
+            lineas[i] = (i + 1) + " " + Configuraciones.maxPuntuaciones[i];
         }
     }
 
@@ -41,7 +41,7 @@ public class PantallaMaximasPuntuaciones extends Pantalla {
         Graficos g = juego.getGraphics();
 
         g.drawPixmap(Assets.fondo, 0, 0);
-        g.drawPixmap(Assets.menuprincipal, 64, 20, 0, 42, 196, 42);
+        g.drawPixmap(Assets.menuprincipal, 64, 20, 0, 49, 196, 43);
 
         int y = 100;
         for (int i = 0; i < 5; i++) {
@@ -62,17 +62,75 @@ public class PantallaMaximasPuntuaciones extends Pantalla {
                 continue;
             }
 
-            int srcX;
-            int srcWidth;
-            if (character == '.') {
-                srcX = 200;
-                srcWidth = 10;
-            } else {
-                srcX = (character - '0') * 20;
-                srcWidth = 20;
+            int srcX = 0;
+            int srcY = 0;
+            int srcWidth = 0;
+            int srcHeight = 0;
+            
+            switch (character) {
+                case '0':
+                    srcX = 10;
+                    srcY = 19;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '1':
+                    srcX = 52;
+                    srcY = 19;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '2':
+                    srcX = 88;
+                    srcY = 19;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '3':
+                    srcX = 128;
+                    srcY = 19;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '4':
+                    srcX = 165;
+                    srcY = 19;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '5':
+                    srcX = 10;
+                    srcY = 79;
+                    srcWidth = 38;
+                    srcHeight = 39;
+                    break;
+                case '6':
+                    srcX = 52;
+                    srcY = 79;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '7':
+                    srcX = 88;
+                    srcY = 79;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
+                case '8':
+                    srcX = 126;
+                    srcY = 79;
+                    srcWidth = 39;
+                    srcHeight = 39;
+                    break;
+                case '9':
+                    srcX = 165;
+                    srcY = 79;
+                    srcWidth = 36;
+                    srcHeight = 39;
+                    break;
             }
 
-            g.drawPixmap(Assets.numeros, x, y, srcX, 0, srcWidth, 32);
+            g.drawPixmap(Assets.numeros, x, y, srcX, srcY, srcWidth, srcHeight);
             x += srcWidth;
         }
     }
