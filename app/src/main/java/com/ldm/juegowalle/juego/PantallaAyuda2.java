@@ -36,7 +36,7 @@ public class PantallaAyuda2 extends Pantalla {
     public void present(float deltaTime) {
         Graficos g = juego.getGraphics();
         g.drawPixmap(Assets.fondo, 0, 0);
-        g.drawPixmap(Assets.ayuda2, 64, 100);
+        g.drawPixmap(Assets.ayuda2, 54, 100);
         g.drawPixmap(Assets.botones, 256, 416, 4, 59, 60, 54);
     }
 
