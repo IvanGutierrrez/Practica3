@@ -37,18 +37,8 @@ public class AndroidMusica implements Musica, OnCompletionListener {
     }
 
     @Override
-    public boolean isLooping() {
-        return mediaPlayer.isLooping();
-    }
-
-    @Override
     public boolean isPlaying() {
         return mediaPlayer.isPlaying();
-    }
-
-    @Override
-    public boolean isStopped() {
-        return !isPrepared;
     }
 
     @Override

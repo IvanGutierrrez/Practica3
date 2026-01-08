@@ -90,36 +90,6 @@ public class MultiTouchHandler implements TouchHandler {
     }
 
     @Override
-    public boolean isTouchDown(int pointer) {
-        synchronized (this) {
-            if (pointer < 0 || pointer >= 20)
-                return false;
-            else
-                return isTouched[pointer];
-        }
-    }
-
-    @Override
-    public int getTouchX(int pointer) {
-        synchronized (this) {
-            if (pointer < 0 || pointer >= 20)
-                return 0;
-            else
-                return touchX[pointer];
-        }
-    }
-
-    @Override
-    public int getTouchY(int pointer) {
-        synchronized (this) {
-            if (pointer < 0 || pointer >= 20)
-                return 0;
-            else
-                return touchY[pointer];
-        }
-    }
-
-    @Override
     public List<TouchEvent> getTouchEvents() {
         synchronized (this) {
             int len = touchEvents.size();

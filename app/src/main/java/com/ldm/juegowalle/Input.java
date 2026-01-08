@@ -11,8 +11,7 @@ public interface Input {
         public int keyCode;
         public char keyChar;
 
-        @Override
-        public String toString() {
+        @Override        @androidx.annotation.NonNull        public String toString() {
             StringBuilder builder = new StringBuilder();
             if (type == KEY_DOWN)
                 builder.append("tecla pulsada, ");
@@ -35,6 +34,7 @@ public interface Input {
         public int pointer;
 
         @Override
+        @androidx.annotation.NonNull
         public String toString() {
             StringBuilder builder = new StringBuilder();
             if (type == TOUCH_DOWN)
@@ -52,22 +52,7 @@ public interface Input {
         }
     }
 
-    boolean isKeyPressed(int keyCode);
-
-    boolean isTouchDown(int pointer);
-
-    int getTouchX(int pointer);
-
-    int getTouchY(int pointer);
-
-    float getAccelX();
-
-    float getAccelY();
-
-    float getAccelZ();
-
-    List<KeyEvent> getKeyEvents();
-
+    @androidx.annotation.NonNull
     List<TouchEvent> getTouchEvents();
 }
 

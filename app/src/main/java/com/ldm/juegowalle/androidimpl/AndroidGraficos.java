@@ -10,7 +10,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.util.Log;
 
@@ -80,33 +79,11 @@ public class AndroidGraficos implements Graficos {
         return new AndroidPixmap(bitmap, format); // Devuelve el nuevo Pixmap
     }
 
-    // Limpia el lienzo con un color especificado
-    @Override
-    public void clear(int color) {
-        canvas.drawRGB((color & 0xff0000) >> 16, (color & 0xff00) >> 8,
-                (color & 0xff));
-    }
-
-    // Dibuja un píxel en la posición especificada
-    @Override
-    public void drawPixel(int x, int y, int color) {
-        paint.setColor(color);
-        canvas.drawPoint(x, y, paint);
-    }
-
     // Dibuja una línea entre dos puntos
     @Override
     public void drawLine(int x, int y, int x2, int y2, int color) {
         paint.setColor(color);
         canvas.drawLine(x, y, x2, y2, paint);
-    }
-
-    // Dibuja un rectángulo en la posición especificada
-    @Override
-    public void drawRect(int x, int y, int width, int height, int color) {
-        paint.setColor(color);
-        paint.setStyle(Style.FILL);
-        canvas.drawRect(x, y, x + width - 1, y + width - 1, paint);
     }
 
     // Dibuja un Pixmap en una región específica del lienzo

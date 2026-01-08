@@ -14,7 +14,6 @@ public class MainMenuScreen extends Pantalla {
     public void update(float deltaTime) {
         Graficos g = juego.getGraphics();
         List<TouchEvent> touchEvents = juego.getInput().getTouchEvents();
-        juego.getInput().getKeyEvents();
 
         int len = touchEvents.size();
         for(int i = 0; i < len; i++) {

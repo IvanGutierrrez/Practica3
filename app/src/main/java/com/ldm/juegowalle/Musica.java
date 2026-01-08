@@ -13,10 +13,6 @@ public interface Musica {
 
     boolean isPlaying();
 
-    boolean isStopped();
-
-    boolean isLooping();
-
     void dispose();
 }
 

@@ -55,18 +55,18 @@ public class Mundo {
 
         int basuraX = random.nextInt(MUNDO_ANCHO);
         int basuraY = random.nextInt(MUNDO_ALTO);
-        while (true) {
-            if (!campos[basuraX][basuraY])
-                break;
-            basuraX += 1;
-            if (basuraX >= MUNDO_ANCHO) {
-                basuraX = 0;
-                basuraY += 1;
-                if (basuraY >= MUNDO_ALTO) {
-                    basuraY = 0;
+        do {
+            if (campos[basuraX][basuraY]) {
+                basuraX += 1;
+                if (basuraX >= MUNDO_ANCHO) {
+                    basuraX = 0;
+                    basuraY += 1;
+                    if (basuraY >= MUNDO_ALTO) {
+                        basuraY = 0;
+                    }
                 }
             }
-        }
+        } while (campos[basuraX][basuraY]);
         basura = new Basura(basuraX, basuraY, random.nextInt(3));
     }
 
@@ -89,18 +89,18 @@ public class Mundo {
 
         int powerUpX = random.nextInt(MUNDO_ANCHO);
         int powerUpY = random.nextInt(MUNDO_ALTO);
-        while (true) {
-            if (!campos[powerUpX][powerUpY])
-                break;
-            powerUpX += 1;
-            if (powerUpX >= MUNDO_ANCHO) {
-                powerUpX = 0;
-                powerUpY += 1;
-                if (powerUpY >= MUNDO_ALTO) {
-                    powerUpY = 0;
+        do {
+            if (campos[powerUpX][powerUpY]) {
+                powerUpX += 1;
+                if (powerUpX >= MUNDO_ANCHO) {
+                    powerUpX = 0;
+                    powerUpY += 1;
+                    if (powerUpY >= MUNDO_ALTO) {
+                        powerUpY = 0;
+                    }
                 }
             }
-        }
+        } while (campos[powerUpX][powerUpY]);
         powerUp = new PowerUp(powerUpX, powerUpY, random.nextInt(3));
     }
 
@@ -118,15 +118,12 @@ public class Mundo {
         int bombaX, bombaY;
         Cubo head = robot.partes.get(0);
 
-        while (true) {
+        do {
             bombaX = random.nextInt(MUNDO_ANCHO);
             bombaY = random.nextInt(MUNDO_ALTO);
-
-                if (!campos[bombaX][bombaY] &&
-                    Math.abs(bombaX - head.x) > 1 &&
-                    Math.abs(bombaY - head.y) > 1)
-                break;
-        }
+        } while (campos[bombaX][bombaY] ||
+                 Math.abs(bombaX - head.x) <= 1 ||
+                 Math.abs(bombaY - head.y) <= 1);
 
         bomba = new Bomba(bombaX, bombaY);
     }

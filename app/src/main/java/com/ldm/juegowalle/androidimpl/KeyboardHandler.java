@@ -14,7 +14,6 @@ public class KeyboardHandler implements OnKeyListener {
     boolean[] pressedKeys = new boolean[128];
     Pool<KeyEvent> keyEventPool;
     List<KeyEvent> keyEventsBuffer = new ArrayList<>();
-    List<KeyEvent> keyEvents = new ArrayList<>();
 
     public KeyboardHandler(View view) {
 
@@ -47,23 +46,6 @@ public class KeyboardHandler implements OnKeyListener {
             keyEventsBuffer.add(keyEvent);
         }
         return false;
-    }
-
-    public boolean isKeyPressed(int keyCode) {
-        if (keyCode < 0 || keyCode > 127)
-            return false;
-        return pressedKeys[keyCode];
-    }
-    public List<KeyEvent> getKeyEvents() {
-        synchronized (this) {
-            int len = keyEvents.size();
-            for (int i = 0; i < len; i++)
-                keyEventPool.free(keyEvents.get(i));
-            keyEvents.clear();
-            keyEvents.addAll(keyEventsBuffer);
-            keyEventsBuffer.clear();
-            return keyEvents;
-        }
     }
 }
 

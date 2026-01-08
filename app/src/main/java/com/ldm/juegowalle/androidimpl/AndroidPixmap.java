@@ -25,11 +25,6 @@ public class AndroidPixmap implements Pixmap {
     }
 
     @Override
-    public PixmapFormat getFormat() {
-        return format;
-    }
-
-    @Override
     public void dispose() {
         bitmap.recycle();
     }

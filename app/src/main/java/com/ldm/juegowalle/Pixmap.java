@@ -7,8 +7,6 @@ public interface Pixmap {
 
     int getHeight();
 
-    PixmapFormat getFormat();
-
     void dispose();
 }
 

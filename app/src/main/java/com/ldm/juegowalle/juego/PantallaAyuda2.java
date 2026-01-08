@@ -16,7 +16,6 @@ public class PantallaAyuda2 extends Pantalla {
     @Override
     public void update(float deltaTime) {
         List<TouchEvent> touchEvents = juego.getInput().getTouchEvents();
-        juego.getInput().getKeyEvents();
 
         int len = touchEvents.size();
         for(int i = 0; i < len; i++) {

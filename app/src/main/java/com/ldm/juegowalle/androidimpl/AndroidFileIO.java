@@ -9,28 +9,19 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 
 import com.ldm.juegowalle.FileIO;
 
 public class AndroidFileIO implements FileIO {
-    private final AssetManager assets; // Gestor de archivos en assets
     private final String rutaAlmacenamientoExterno; // Ruta al almacenamiento externo específico para la app
 
     public AndroidFileIO(Context context) {
-        this.assets = context.getAssets();
-
         // Obtener el directorio externo específico para la aplicación
         if (context.getExternalFilesDir(null) != null) {
             this.rutaAlmacenamientoExterno = Objects.requireNonNull(context.getExternalFilesDir(null)).getAbsolutePath();
         } else {
             throw new IllegalStateException("No se pudo acceder al almacenamiento externo.");
         }
-    }
-
-    @Override
-    public InputStream leerAsset(String nombreArchivo) throws IOException {
-        return assets.open(nombreArchivo);
     }
 
     @Override

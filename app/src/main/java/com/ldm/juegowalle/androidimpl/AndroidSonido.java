@@ -22,10 +22,5 @@ public class AndroidSonido implements Sonido {
         soundPool.unload(soundId);
     }
 
-    @Override
-    public void parar() {
-        soundPool.stop(soundId);
-    }
-
 }
 

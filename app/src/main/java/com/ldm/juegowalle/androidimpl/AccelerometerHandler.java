@@ -34,17 +34,5 @@ public class AccelerometerHandler implements SensorEventListener {
         accelY = event.values[1];
         accelZ = event.values[2];
     }
-
-    public float getAccelX() {
-        return accelX;
-    }
-
-    public float getAccelY() {
-        return accelY;
-    }
-
-    public float getAccelZ() {
-        return accelZ;
-    }
 }
 

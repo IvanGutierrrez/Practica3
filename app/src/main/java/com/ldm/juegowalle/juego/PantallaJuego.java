@@ -34,7 +34,6 @@ public class PantallaJuego extends Pantalla {
     @Override
     public void update(float deltaTime) {
         List<TouchEvent> touchEvents = juego.getInput().getTouchEvents();
-        juego.getInput().getKeyEvents();
 
         if(estado == EstadoJuego.Preparado)
             updateReady(touchEvents);
@@ -348,7 +347,7 @@ public class PantallaJuego extends Pantalla {
                     if (Assets.ambiente != null && Assets.ambiente.isPlaying()) {
                         Assets.ambiente.setVolume(VOLUMEN_AMBIENTE_NORMAL);
                     }
-                } catch (InterruptedException e) {}
+                } catch (InterruptedException ignored) {}
             }).start();
         }
     }
