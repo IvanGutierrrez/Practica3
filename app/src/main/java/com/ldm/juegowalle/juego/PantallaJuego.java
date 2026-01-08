@@ -80,6 +80,10 @@ public class PantallaJuego extends Pantalla {
         if(mundo.finalJuego) {
             if(Configuraciones.sonidoHabilitado)
                 Assets.derrota.play(1);
+            if(Assets.ambiente != null && Assets.ambiente.isPlaying())
+                Assets.ambiente.stop();
+            if(Assets.juegob != null && Assets.juegob.isPlaying())
+                Assets.juegob.stop();
             estado = EstadoJuego.FinJuego;
         }
         if(antiguaPuntuacion != mundo.puntuacion) {
