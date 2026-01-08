@@ -15,7 +15,7 @@ public class LoadingScreen extends Pantalla{
         Graficos g = juego.getGraphics();
         Assets.fondo = g.newPixmap("fondo.png", PixmapFormat.RGB565);
         Assets.logo = g.newPixmap("logo.png", PixmapFormat.ARGB4444);
-        Assets.menuprincipal = g.newPixmap("menuPrincipal.png", PixmapFormat.ARGB4444);
+        Assets.menuprincipal = g.newPixmap("menuprincipal.png", PixmapFormat.ARGB4444);
         Assets.botones = g.newPixmap("botones.png", PixmapFormat.ARGB4444);
         Assets.ayuda1 = g.newPixmap("ayuda1.png", PixmapFormat.ARGB4444);
         Assets.ayuda2 = g.newPixmap("ayuda2.png", PixmapFormat.ARGB4444);
