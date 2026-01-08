@@ -38,8 +38,12 @@ public class LoadingScreen extends Pantalla{
         Assets.bomba = g.newPixmap("bomba.png", PixmapFormat.ARGB4444);
 
         Assets.pulsar = juego.getAudio().nuevoSonido("pulsar.ogg");
-        Assets.ataque = juego.getAudio().nuevoSonido("recoger.ogg");
+        Assets.recoger = juego.getAudio().nuevoSonido("recoger.ogg");
         Assets.derrota = juego.getAudio().nuevoSonido("derrota.ogg");
+        Assets.ambiente = juego.getAudio().nuevaMusica("ambiente.ogg");
+        Assets.ambiente.setLooping(true);
+        Assets.juegob = juego.getAudio().nuevaMusica("juegob.ogg");
+        Assets.juegob.setLooping(false);
 
 
         Configuraciones.cargar(juego.getFileIO());

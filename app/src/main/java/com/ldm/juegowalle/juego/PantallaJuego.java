@@ -20,10 +20,15 @@ public class PantallaJuego extends Pantalla {
     Mundo mundo;
     int antiguaPuntuacion = 0;
     String puntuacion = "0";
+    private static final float INTERVALO_JUEGOB = 25f;
+    private float tiempoJuegob = 0f;
+    private static final float VOLUMEN_AMBIENTE_NORMAL = 1.0f;
+    private static final float VOLUMEN_AMBIENTE_MUDO = 0.0f;
 
     public PantallaJuego(Juego juego) {
         super(juego);
         mundo = new Mundo();
+        startAmbienteIfNeeded();
     }
 
     @Override
@@ -56,6 +61,8 @@ public class PantallaJuego extends Pantalla {
                     if(Configuraciones.sonidoHabilitado)
                         Assets.pulsar.play(1);
                     estado = EstadoJuego.Pausado;
+                    pauseAmbiente();
+                    pauseJuegob();
                     return;
                 }
             }
@@ -70,6 +77,7 @@ public class PantallaJuego extends Pantalla {
         }
 
         mundo.update(deltaTime);
+        updateJuegob(deltaTime);
         if(mundo.finalJuego) {
             if(Configuraciones.sonidoHabilitado)
                 Assets.derrota.play(1);
@@ -78,8 +86,10 @@ public class PantallaJuego extends Pantalla {
         if(antiguaPuntuacion != mundo.puntuacion) {
             antiguaPuntuacion = mundo.puntuacion;
             puntuacion = "" + antiguaPuntuacion;
-            if(Configuraciones.sonidoHabilitado)
-                Assets.ataque.play(1);
+            if(Configuraciones.sonidoHabilitado) {
+                muteAmbienteTemporalmente();
+                Assets.recoger.play(1.0f);
+            }
         }
     }
 
@@ -93,11 +103,14 @@ public class PantallaJuego extends Pantalla {
                         if(Configuraciones.sonidoHabilitado)
                             Assets.pulsar.play(1);
                         estado = EstadoJuego.Ejecutandose;
+                        startAmbienteIfNeeded();
+                        tiempoJuegob = 0f;
                         return;
                     }
                     if(event.y > 148 && event.y < 196) {
                         if(Configuraciones.sonidoHabilitado)
                             Assets.pulsar.play(1);
+                        stopAmbiente();
                         juego.setScreen(new MainMenuScreen(juego));
                         return;
                     }
@@ -115,6 +128,7 @@ public class PantallaJuego extends Pantalla {
                         event.y >= 200 && event.y <= 264) {
                     if(Configuraciones.sonidoHabilitado)
                         Assets.pulsar.play(1);
+                    stopAmbiente();
                     juego.setScreen(new MainMenuScreen(juego));
                     return;
                 }
@@ -126,7 +140,7 @@ public class PantallaJuego extends Pantalla {
     public void present(float deltaTime) {
         Graficos g = juego.getGraphics();
 
-        if (g != null) { // Verifica que g no sea null
+        if (g != null) {
             g.drawPixmap(Assets.fondo, 0, 0);
             drawWorld(mundo);
             if (estado == EstadoJuego.Preparado)
@@ -201,10 +215,10 @@ public class PantallaJuego extends Pantalla {
         x = head.x * 32 + 16;
         y = head.y * 32 + 16;
 
-        if (headPixmap != null) { // Verificación de null
+        if (headPixmap != null) {
         g.drawPixmap(headPixmap, x - headPixmap.getWidth() / 2, y - headPixmap.getHeight() / 2);
         } else {
-            System.err.println("headPixmap es null, no se puede dibujar."); // Opcional: para registro de error
+            System.err.println("headPixmap es null, no se puede dibujar.");
         }
     }
 
@@ -318,10 +332,67 @@ public class PantallaJuego extends Pantalla {
         }
     }
 
+    private void startAmbienteIfNeeded() {
+        if (Configuraciones.sonidoHabilitado && Assets.ambiente != null && !Assets.ambiente.isPlaying()) {
+            Assets.ambiente.play();
+            Assets.ambiente.setVolume(VOLUMEN_AMBIENTE_NORMAL);
+        }
+    }
+
+    private void muteAmbienteTemporalmente() {
+        if (Assets.ambiente != null && Assets.ambiente.isPlaying()) {
+            Assets.ambiente.setVolume(VOLUMEN_AMBIENTE_MUDO);
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                    if (Assets.ambiente != null && Assets.ambiente.isPlaying()) {
+                        Assets.ambiente.setVolume(VOLUMEN_AMBIENTE_NORMAL);
+                    }
+                } catch (InterruptedException e) {}
+            }).start();
+        }
+    }
+
+    private void updateJuegob(float deltaTime) {
+        if (!Configuraciones.sonidoHabilitado || Assets.juegob == null) {
+            return;
+        }
+
+        tiempoJuegob += deltaTime;
+        if (tiempoJuegob >= INTERVALO_JUEGOB) {
+            Assets.juegob.play();
+            tiempoJuegob = 0f;
+        }
+    }
+
+    private void pauseAmbiente() {
+        if (Assets.ambiente != null && Assets.ambiente.isPlaying()) {
+            Assets.ambiente.pause();
+        }
+    }
+
+    private void pauseJuegob() {
+        if (Assets.juegob != null && Assets.juegob.isPlaying()) {
+            Assets.juegob.pause();
+        }
+    }
+
+    private void stopAmbiente() {
+        if (Assets.ambiente != null) {
+            Assets.ambiente.stop();
+        }
+        if (Assets.juegob != null) {
+            Assets.juegob.stop();
+        }
+    }
+
     @Override
     public void pause() {
         if(estado == EstadoJuego.Ejecutandose)
             estado = EstadoJuego.Pausado;
+
+        pauseAmbiente();
+        pauseJuegob();
 
         if(mundo.finalJuego) {
             Configuraciones.addScore(mundo.puntuacion);
@@ -330,8 +401,14 @@ public class PantallaJuego extends Pantalla {
     }
 
     @Override
-    public void resume() {}
+    public void resume() {
+        startAmbienteIfNeeded();
+        tiempoJuegob = 0f;
+        pauseJuegob();
+    }
 
     @Override
-    public void dispose() {}
+    public void dispose() {
+        stopAmbiente();
+    }
 }

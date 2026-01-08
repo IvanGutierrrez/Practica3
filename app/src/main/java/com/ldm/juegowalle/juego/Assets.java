@@ -2,6 +2,7 @@ package com.ldm.juegowalle.juego;
 
 import com.ldm.juegowalle.Pixmap;
 import com.ldm.juegowalle.Sonido;
+import com.ldm.juegowalle.Musica;
 
 public class Assets {
     public static Pixmap fondo;
@@ -30,7 +31,9 @@ public class Assets {
 
 
     public static Sonido pulsar;
-    public static Sonido ataque;
+    public static Sonido recoger;
     public static Sonido derrota;
+    public static Musica ambiente;
+    public static Musica juegob;
 
 }
